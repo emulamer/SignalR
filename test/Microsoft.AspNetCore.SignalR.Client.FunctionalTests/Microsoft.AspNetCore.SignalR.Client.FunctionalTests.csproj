@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <Compile Include="..\Common\TaskExtensions.cs" Link="TaskExtensions.cs" />
+    <Compile Include="..\Microsoft.AspNetCore.SignalR.Tests\XUnitLoggerProvider.cs" Link="XUnitLoggerProvider.cs" />
   </ItemGroup>
 
   <ItemGroup>
