@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace Microsoft.AspNetCore.SignalR.Client.FunctionalTests
 {
@@ -19,7 +20,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.FunctionalTests
         private readonly TestServer _testServer;
         private static readonly bool _verbose = string.Equals(Environment.GetEnvironmentVariable("SIGNALR_TEST_VERBOSE"), "1");
 
-        public HubConnectionTests()
+        public HubConnectionTests(ITestOutputHelper output)
         {
             var webHostBuilder = new WebHostBuilder().
                 ConfigureServices(services =>
@@ -28,6 +29,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.FunctionalTests
                 })
                 .ConfigureLogging(loggerFactory =>
                 {
+                    loggerFactory.AddXUnit(output);
                     if (_verbose)
                     {
                         loggerFactory.AddConsole();
