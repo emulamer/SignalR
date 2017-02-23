@@ -1,5 +1,6 @@
 import { ConnectionClosed } from "./Common"
 import { Connection } from "./Connection"
+import { ISignalROptions } from "./ISignalROptions"
 
 interface InvocationDescriptor {
     readonly Id: string;
@@ -21,8 +22,8 @@ export class HubConnection {
     private methods: Map<string, (...args: any[]) => void>;
     private id: number;
 
-    constructor(url: string, queryString?: string) {
-        this.connection = new Connection(url, queryString);
+    constructor(url: string, queryString?: string, options?: ISignalROptions) {
+        this.connection = new Connection(url, queryString, options);
 
         this.connection.dataReceived = data => {
             this.dataReceived(data);
